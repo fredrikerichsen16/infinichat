@@ -7,7 +7,7 @@
         "build": "webpack",
         "build-style": "node-sass static/scss -o static/css && webpack",
         "watch-scss": "node-sass --watch static/scss -o static/css",
-        "server": "node app/app.js"
+        "serve": "node app/app.js"
     },
     "author": "",
     "license": "ISC",
