@@ -6,6 +6,7 @@
     "scripts": {
         "build": "webpack",
         "build-style": "node-sass static/scss -o static/css && webpack",
+        "build-serve": "webpack && npm run serve",
         "watch-scss": "node-sass --watch static/scss -o static/css",
         "serve": "node app/app.js"
     },

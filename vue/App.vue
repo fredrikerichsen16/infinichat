@@ -1,38 +1,34 @@
 <script>
 
-import Clock from './components/Clock.vue';
-import { mapState } from 'vuex';
-
 export default {
     name: 'App',
 
     data() {
         return {};
-    },
-
-    computed: {
-        ...mapState(['user'])
-    },
-
-    components: {
-        Clock
     }
 }
 
 </script>
 
 <template>
-    <div>
-        <h1>Hello, World!</h1>
-        <p>{{ user }}</p>
-        <Clock />
-    </div>
+    <main>
+        <router-view></router-view>
+    </main>
 </template>
 
 <style lang="scss" scoped>
 
-h1 {
-    font-size: 24px;
+main {
+    background: #4e54c8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    font-family: Roboto;
 }
 
 </style>
