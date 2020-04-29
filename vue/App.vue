@@ -1,7 +1,13 @@
 <script>
 
+import Navigation from './components/Navigation.vue';
+
 export default {
     name: 'App',
+
+    components: {
+        Navigation
+    },
 
     data() {
         return {};
@@ -12,6 +18,7 @@ export default {
 
 <template>
     <main>
+        <Navigation />
         <router-view></router-view>
     </main>
 </template>

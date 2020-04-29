@@ -4,27 +4,60 @@ import VueRouter from 'vue-router';
 import Signin from '@/components/Signin.vue';
 import Plane from '@/components/Plane.vue';
 import Chat from '@/components/Chat.vue';
+import Lobby from '@/components/Lobby.vue';
+import Settings from '@/components/Settings.vue';
+
 
 Vue.use(VueRouter);
 
 const routes = [
     {
+        name: 'Signin',
         path: '/',
         component: Signin,
-        meta: {}
     },
     {
+        name: 'Plane',
         path: '/plane',
         component: Plane,
         meta: {
-            protected: true
+            protected: true,
+            navigation: [
+                { to: 'Settings' }, { text: 'Leave Room', to: 'Lobby' }, { text: 'Queue Song', to: '/queue-song' }, { text: 'Sign Out', to: '@signout' },
+            ],
         }
     },
     {
+        name: 'Chat',
         path: '/chat',
         component: Chat,
         meta: {
-            protected: true
+            protected: true,
+            navigation: [
+                { text: 'Leave', to: 'Plane' }
+            ],
+        }
+    },
+    {
+        name: 'Lobby',
+        path: '/lobby',
+        component: Lobby,
+        meta: {
+            protected: true,
+            navigation: [
+                { text: 'Sign Out', to: '@signout' }
+            ],
+        }
+    },
+    {
+        name: 'Settings',
+        path: '/settings',
+        component: Settings,
+        meta: {
+            protected: true,
+            navigation: [
+                { text: 'Back', to: 'Plane' }, { text: 'Sign Out', to: '@signout' }
+            ],
         }
     },
 ];
