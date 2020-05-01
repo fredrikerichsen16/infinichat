@@ -3,6 +3,14 @@
     margin: 0;
 }
 
+a, span, div, p, h1, h2, h3, h4, h5, h6, input, textarea {
+    font-family: Roboto;
+}
+
+li {
+    list-style-type: none;
+}
+
 a {
     text-decoration: none;
     cursor: pointer;

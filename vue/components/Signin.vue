@@ -31,7 +31,7 @@
                     return;
                 }
 
-                this.$router.push('plane');
+                this.$router.push('lobby');
             },
 
             signupAction() {
@@ -47,7 +47,7 @@
                     return;
                 }
 
-                this.$router.push('plane');
+                this.$router.push('lobby');
             },
         },
     }
