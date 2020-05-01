@@ -1,4 +1,7 @@
 <script>
+
+    import UserInfo from './UserInfo.vue';
+
     export default {
         name: 'Plane',
 
@@ -30,8 +33,14 @@
                         name: 'Lisa',
                         avatar: 'https://upload.wikimedia.org/wikipedia/commons/2/28/Hillary_Clinton_by_Gage_Skidmore_2.jpg'
                     }
-                ]
+                ],
+
+                showSidebar: false,
             }
+        },
+
+        components: {
+            UserInfo
         },
 
         methods: {
@@ -59,10 +68,7 @@
             },
 
             getDetailsOfUser() {
-                // actually clicking on a user avatar should open a menu with some info about the user, hence the name
-                // of the method. but for now i'll just make it go straight to vid chat.
-
-                this.$router.push('chat');
+                this.$router.push('/chat');
             }
         },
 
