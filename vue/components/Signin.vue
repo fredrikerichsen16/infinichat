@@ -1,56 +1,65 @@
 <script>
-    export default {
-        name: 'Signin',
 
-        data() {
-            return {
-                username: '',
-                password: '',
-                confirmPassword: '',
-                signin: true,
-                error: '',
+export default {
+    name: 'Signin',
+
+    data() {
+        return {
+            username: '',
+            password: '',
+            confirmPassword: '',
+            signin: true,
+            error: '',
+        }
+    },
+
+    methods: {
+        changeFormType() {
+            this.error = '';
+            this.signin = !this.signin;
+        },
+
+        signinAction() {
+            this.error = '';
+
+            if(this.username == '' || this.password == '') {
+                this.error = 'Fill in the fields!';
+                return;
             }
+
+            const users = this.$store.state.users;
+            let user = users.find(u => u.username === this.username);
+
+            if(!user || user.password != this.password) {
+                this.error = 'Wrong password or username';
+                return;
+            }
+
+            this.$store.commit('SET_USER', user.id);
+
+            this.$router.authorized = true;
+
+            this.$router.push('lobby');
         },
 
-        methods: {
-            changeFormType() {
-                this.error = '';
-                this.signin = !this.signin;
-            },
+        signupAction() {
+            this.error = '';
 
-            signinAction() {
-                this.error = '';
+            if(this.username == '' || this.password == '' || this.confirmPassword == '') {
+                this.error = 'Fill in the fields!';
+                return;
+            }
 
-                if(this.username == '' || this.password == '') {
-                    this.error = 'Fill in the fields!';
-                    return;
-                }
+            if(this.password != this.confirmPassword) {
+                this.error = "Passwords don't match";
+                return;
+            }
 
-                if(this.password.length < 4) {
-                    this.error = 'Wrong password and/or username';
-                    return;
-                }
-
-                this.$router.push('lobby');
-            },
-
-            signupAction() {
-                this.error = '';
-
-                if(this.username == '' || this.password == '' || this.confirmPassword == '') {
-                    this.error = 'Fill in the fields!';
-                    return;
-                }
-
-                if(this.password != this.confirmPassword) {
-                    this.error = "Passwords don't match";
-                    return;
-                }
-
-                this.$router.push('lobby');
-            },
+            this.$router.push('lobby');
         },
-    }
+    },
+}
+
 </script>
 
 <template>

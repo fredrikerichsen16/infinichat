@@ -76,10 +76,12 @@ router.beforeEach((to, from, next) => {
         return next();
     }
 
-    // check if user is authenticated..., if no redirect
-    router.authorized = true;
+    next({ path: '/' });
 
-    return next();
+    // // check if user is authenticated..., if no redirect
+    // router.authorized = true;
+    //
+    // return next();
 });
 
 export default router;
