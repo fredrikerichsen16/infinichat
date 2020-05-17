@@ -1,9 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
+let path = require('path');
+let webpack = require('webpack');
 
-var MODE = 'development';
-var VUE_SRC = path.resolve(__dirname, 'vue');
-var VUE_DIST = path.resolve(__dirname, 'static/vue-dist');
+let MODE = 'development';
+let VUE_SRC = path.resolve(__dirname, 'vue');
+let VUE_DIST = path.resolve(__dirname, 'static/vue-dist');
 
 const { VueLoaderPlugin } = require('vue-loader');
 
