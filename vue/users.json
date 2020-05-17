@@ -1,22 +1,25 @@
 [
     {
-        "id": 1,
-        "name": "Fredrik",
-        "avatar": "kobe.jpg",
+        "name": "Fredrik Skjelvik",
+        "avatar": "https://premium.vgc.no/v2/images/b10cf31a-71ed-41c8-b8f4-593431da0907?fit=crop&h=1280&w=1900&s=bbe3a7d3028c16572f05b77fb3367a449151e171",
+        "bio": "FREDRIK",
+        "age": 21,
         "username": "fredrikerichsen16@gmail.com",
         "password": "secret1"
     },
     {
-        "id": 2,
-        "name": "Ross",
-        "avatar": "kim.jpg",
+        "name": "Ross Medcalf",
+        "avatar": "https://premium.vgc.no/v2/images/b10cf31a-71ed-41c8-b8f4-593431da0907?fit=crop&h=1280&w=1900&s=bbe3a7d3028c16572f05b77fb3367a449151e171",
+        "bio": "ROSS",
+        "age": 21,
         "username": "ross@gmail.com",
         "password": "secret2"
     },
     {
-        "id": 3,
-        "name": "Andrei",
-        "avatar": "joe.jpg",
+        "name": "Andrei Ducu",
+        "avatar": "https://premium.vgc.no/v2/images/b10cf31a-71ed-41c8-b8f4-593431da0907?fit=crop&h=1280&w=1900&s=bbe3a7d3028c16572f05b77fb3367a449151e171",
+        "bio": "ANDREI",
+        "age": 19,
         "username": "andrei@gmail.com",
         "password": "secret3"
     }

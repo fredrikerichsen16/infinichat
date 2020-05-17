@@ -1,11 +1,40 @@
 <script>
+    import { mapState, mapMutations } from 'vuex';
+
     export default {
         name: 'Settings',
 
         data() {
             return {
-
+                oldPassword: '',
+                newPassword: '',
+                successMsg: '',
+                errorMsg: '',
             }
+        },
+
+        computed: mapState(['user']),
+
+        methods: {
+            ...mapMutations(['UPDATE_USER']),
+
+            onSubmit() {
+                this.errorMsg = '';
+                this.successMsg = '';
+
+                if(this.newPassword != '') {
+                    if(this.user.password === this.oldPassword) {
+                        this.user.password = this.newPassword;
+                    } else {
+                        this.errorMsg = 'Old password is incorrect.';
+                        return;
+                    }
+                }
+
+                this.UPDATE_USER(this.user);
+
+                this.successMsg = 'Successfully updated user';
+            },
         }
     }
 </script>
@@ -13,6 +42,9 @@
 <template>
     <div class="container">
         <h1>Settings</h1>
+
+        <p class="message error" v-show="errorMsg !== ''">{{ errorMsg }}</p>
+        <p class="message success" v-show="successMsg !== ''">{{ successMsg }}</p>
 
         <form>
             <h2>Public Profile</h2>
@@ -22,7 +54,7 @@
                 <input type="text"
                        name="name"
                        id="inputName"
-                       v-model.trim="name">
+                       v-model.trim="user.name">
             </p>
 
             <p class="input-block">
@@ -30,7 +62,7 @@
                 <input type="number"
                        name="age"
                        id="inputAge"
-                       v-model="age">
+                       v-model="user.age">
             </p>
 
             <p class="input-block">
@@ -38,19 +70,17 @@
                 <input type="text"
                        name="bio"
                        id="inputBio"
-                       v-model="bio">
+                       v-model="user.bio">
             </p>
 
             <p class="input-block">
                 <label for="selectAvatar">Avatar</label>
-                <select name="avatar" id="selectAvatar">
-                    <option disabled selected>Select...</option>
-                    <option value="Upload">Upload Custom</option>
-                    <option value="Kim Jong Un">Kim Jong Un</option>
-                    <option value="Kobe Bryant">Kobe Bryant</option>
-                    <option value="Joe Exotic">Joe Exotic</option>
-                    <option value="Donald Trump">Donald Trump</option>
-                    <option value="Angela Merkel">Angela Merkel</option>
+                <select name="avatar" id="selectAvatar" v-model="user.avatar">
+                    <option disabled>Select...</option>
+                    <option value="https://premium.vgc.no/v2/images/b10cf31a-71ed-41c8-b8f4-593431da0907?fit=crop&h=1280&w=1900&s=bbe3a7d3028c16572f05b77fb3367a449151e171">Kobe Bryant</option>
+                    <option value="https://static.boredpanda.com/blog/wp-content/uploads/2017/03/funny-cristiano-ronaldo-statue-fail-33-58dcc00c785ef__700.jpg">Cristiano Ronaldo</option>
+                    <option value="https://www.cheatsheet.com/wp-content/uploads/2019/12/Taylor-Swift-5.jpg">Taylor Swift</option>
+                    <option value="https://cdn.fansided.com/wp-content/blogs.dir/308/files/2014/11/Margot_Robbie.jpg">Margot Robbie</option>
                 </select>
             </p>
 
@@ -72,7 +102,8 @@
                        v-model.trim="newPassword">
             </p>
 
-            <div class="button">Submit</div>
+            <div class="button"
+                @click.prevent="onSubmit">Submit</div>
         </form>
     </div>
 </template>
@@ -106,15 +137,22 @@ div.container {
         margin: 20px 0 14px 0;
     }
 
-    > p.error {
+    > p.message {
         font-weight: lighter;
         color: white;
 
         width: calc(100% - 28px);
         padding: 8px 14px;
-        background: #f05053;
         border-radius: 6px;
         margin: 10px 0;
+
+        &.error {
+            background: #f05053;
+        }
+
+        &.success {
+            background: #51f072;
+        }
     }
 }
 

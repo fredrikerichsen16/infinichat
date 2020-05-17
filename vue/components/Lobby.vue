@@ -20,8 +20,8 @@
         <ul>
             <li>
                 <div class="text">
-                    <h1>Knullegutta reunion</h1>
-                    <p>Leo, Mathias, Jens, Hermann, and 3 more</p>
+                    <h1>The boys</h1>
+                    <p>Jeff, John, Bob, Kev and 5 more</p>
                 </div>
                 <div class="button" @click="joinRoom">
                     <span>Join</span>
@@ -29,8 +29,8 @@
             </li>
             <li>
                 <div class="text">
-                    <h1>Knullegutta reunion</h1>
-                    <p>Leo, Mathias, Jens, Hermann, and 3 more</p>
+                    <h1>Knullegutta</h1>
+                    <p>Leo, Mathias, Jens, and Hermann</p>
                 </div>
                 <div class="button" @click="joinRoom">
                     <span>Join</span>
@@ -38,8 +38,8 @@
             </li>
             <li>
                 <div class="text">
-                    <h1>Knullegutta reunion</h1>
-                    <p>Leo, Mathias, Jens, Hermann, and 3 more</p>
+                    <h1>Football team boys</h1>
+                    <p>Peter, Toby, Martijn, Andy and 7 more</p>
                 </div>
                 <div class="button" @click="joinRoom">
                     <span>Join</span>

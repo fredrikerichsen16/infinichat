@@ -1,6 +1,7 @@
 <script>
 
-const cloneDeep = require('lodash.clonedeep');
+import cloneDeep from 'lodash.clonedeep';
+import { mapMutations } from 'vuex';
 
 export default {
     name: 'Navigation',
@@ -12,11 +13,10 @@ export default {
     },
 
     methods: {
-        signout(e) {
-            e.preventDefault();
+        ...mapMutations(['SIGN_OUT']),
 
-            // sign out logic
-
+        signout() {
+            this.SIGN_OUT();
             this.$router.push('/');
         },
     },
@@ -57,17 +57,10 @@ export default {
                     return link;
                 });
 
-                console.log(1, navigation);
-
                 this.links = navigation;
             },
             immediate: true,
         }
-    },
-
-    mounted() {
-        console.log(this.$router);
-        console.log(this.$route);
     }
 }
 
@@ -77,7 +70,7 @@ export default {
     <div>
         <template v-for="link in links" :to="link.to">
             <router-link v-if="!link.signout" :to="link.to">{{ link.text }}</router-link>
-            <a v-else @click="signout($event)">{{ link.text }}</a>
+            <a v-else @click.prevent="signout">{{ link.text }}</a>
         </template>
     </div>
 </template>

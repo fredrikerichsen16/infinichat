@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import storage from 'local-storage';
 
 import Signin from '@/components/Signin.vue';
 import Plane from '@/components/Plane.vue';
 import Chat from '@/components/Chat.vue';
 import Lobby from '@/components/Lobby.vue';
 import Settings from '@/components/Settings.vue';
+import Signup from '@/components/Signup.vue';
 
 
 Vue.use(VueRouter);
@@ -17,13 +19,18 @@ const routes = [
         component: Signin,
     },
     {
+        name: 'Signup',
+        path: '/signup',
+        component: Signup,
+    },
+    {
         name: 'Plane',
         path: '/plane',
         component: Plane,
         meta: {
             protected: true,
             navigation: [
-                { to: 'Settings' }, { text: 'Leave Room', to: 'Lobby' }, { text: 'Queue Song', to: '/queue-song' }, { text: 'Sign Out', to: '@signout' },
+                { to: 'Settings' }, { text: 'Leave Room', to: 'Lobby' }, /*{ text: 'Queue Song', to: '/queue-song' },*/ { text: 'Sign Out', to: '@signout' },
             ],
         }
     },
@@ -72,16 +79,11 @@ router.beforeEach((to, from, next) => {
     /**
      * Authenticate user before they enter sensitive routes (widgets) and load content
      */
-    if(router.authorized || !to.meta.hasOwnProperty('protected') || !to.meta.protected) {
+    if(storage.get('userId') || !to.meta.hasOwnProperty('protected') || !to.meta.protected) {
         return next();
     }
 
     next({ path: '/' });
-
-    // // check if user is authenticated..., if no redirect
-    // router.authorized = true;
-    //
-    // return next();
 });
 
 export default router;
