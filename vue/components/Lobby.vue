@@ -1,17 +1,44 @@
 <script>
-    export default {
-        name: 'Lobby',
 
-        data() {
-            return {};
+import { mapState } from 'vuex';
+
+export default {
+    name: 'Lobby',
+
+    data() {
+        return {};
+    },
+
+    computed: {
+        ...mapState(['chatrooms'])
+    },
+
+    methods: {
+        joinRoom() {
+            this.$router.push('/plane');
         },
 
-        methods: {
-            joinRoom() {
-                this.$router.push('/plane');
-            },
-        },
-    }
+        condenseParticipants(participants) {
+            let lenParticipants = participants.length;
+            if(lenParticipants === 0)
+            {
+                return 'There is nobody in here';
+            }
+            else if(lenParticipants === 1)
+            {
+                return participants[0];
+            }
+            else if(lenParticipants === 2) {
+                return participants[0] + ' and ' + participants[1];
+            }
+            else
+            {
+                return `${participants[0]}, ${participants[1]} and ${lenParticipants - 2} more`;
+            }
+        }
+    },
+}
+
 </script>
 
 <template>
@@ -45,7 +72,18 @@
                     <span>Join</span>
                 </div>
             </li>
+            <li v-for="chatroom in chatrooms">
+                <div class="text">
+                    <h1>{{ chatroom.name }}</h1>
+                    <p>{{ condenseParticipants(chatroom.participants) }}</p>
+                </div>
+                <div class="button" @click="joinRoom">
+                    <span>Join</span>
+                </div>
+            </li>
         </ul>
+
+        <router-link class="create-chatroom" to="/create-chatroom">Create Chatroom</router-link>
     </div>
 </template>
 
@@ -122,6 +160,19 @@
                     background-color: #04af5c;
                 }
             }
+        }
+
+        > a.create-chatroom {
+            position: absolute;
+            bottom: 20px;
+            left: 60px;
+            width: 320px;
+            padding: 10px 0;
+            background-color: #0575E6;
+            color: white;
+            font-size: 18px;
+            font-weight: 300;
+            text-align: center;
         }
     }
 

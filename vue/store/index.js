@@ -18,6 +18,8 @@ const state = {
 
     userId: storage.get('userId') || null,
 
+    chatrooms: storage.get('chatrooms') || [],
+
     userUnderInspection: null,
 
     chatParticipants: [],
@@ -54,6 +56,13 @@ const mutations = {
         storage.set('users', state.users);
         storage.set('user', user);
         storage.set('userId', state.userId);
+    },
+
+    ADD_CHATROOM(state, { name, participants }) {
+        state.chatrooms.push({
+            name,
+            participants
+        });
     },
 
     SIGN_OUT(state) {

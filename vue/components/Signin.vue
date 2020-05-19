@@ -111,10 +111,12 @@ div.container p.input-block {
         padding: 8px;
         width: calc(100% - 16px);
         outline: none;
+        box-shadow: none;
+        border: 1px solid #ccc;
         margin-top: 5px;
 
         &:focus {
-            border-color: #eee;
+            border: 1px solid #ddd;
         }
     }
 

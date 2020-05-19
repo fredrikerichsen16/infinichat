@@ -8,6 +8,7 @@ import Chat from '@/components/Chat.vue';
 import Lobby from '@/components/Lobby.vue';
 import Settings from '@/components/Settings.vue';
 import Signup from '@/components/Signup.vue';
+import CreateChatroom from '@/components/CreateChatroom.vue';
 
 
 Vue.use(VueRouter);
@@ -54,6 +55,15 @@ const routes = [
             navigation: [
                 { text: 'Sign Out', to: '@signout' }
             ],
+        }
+    },
+    {
+        name: 'CreateChatroom',
+        path: '/create-chatroom',
+        component: CreateChatroom,
+        meta: {
+            protected: true,
+            navigation: []
         }
     },
     {
